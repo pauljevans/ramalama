@@ -51,6 +51,14 @@ DATA_PATH = Path(__file__).parent / "data" / "test_quadlet"
         (Input(model="tinyllama", image="testimage", args=Args(port="2020")), DATA_PATH / "portmapping"),
         (
             Input(
+                model="tinyllama",
+                image="testimage",
+                args=Args(env=["HSA_OVERRIDE_GFX_VERSION=11.0.0"]),
+            ),
+                DATA_PATH / "amd_override_test",
+        ),
+        (
+            Input(
                 model="longpathtoablobsha", image="testimage", args=Args(MODEL="modelfromstore"), model_file_exists=True
             ),
             DATA_PATH / "modelfromstore",

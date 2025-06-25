@@ -107,6 +107,8 @@ class Engine:
         if hasattr(self.args, "env"):
             for env in self.args.env:
                 self.exec_args += ["--env", env]
+        if hasattr(self.args, "amd_override") and self.args.amd_override:
+            self.exec_args += ["--env", f"HSA_OVERRIDE_GFX_VERSION={self.args.amd_override}"]
 
     def add_tty_option(self):
         if self.use_tty():

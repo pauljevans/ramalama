@@ -73,6 +73,8 @@ class Quadlet:
             quadlet_file.add("Container", "Environment", f"{k}={v}")
         for e in self.args.env:
             quadlet_file.add("Container", "Environment", f"{e}")
+        if hasattr(self.args, "amd_override") and self.args.amd_override:
+            quadlet_file.add("Container", "Environment", f"HSA_OVERRIDE_GFX_VERSION={self.args.amd_override}")
         return env_var_string
 
     def _gen_image(self, name, image):

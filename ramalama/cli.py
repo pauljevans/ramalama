@@ -767,6 +767,12 @@ def runtime_options(parser, command):
             help="unified API layer for for Inference, RAG, Agents, Tools, Safety, Evals, and Telemetry.",
         )
     parser.add_argument("--authfile", help="path of the authentication file")
+    parser.add_argument(
+        "--amd-override",
+        type=str,
+        help="override HSA_OVERRIDE_GFX_VERSION in the container (e.g., 10.3.0)",
+        completer=suppressCompleter,
+    )
     if command in ["run", "perplexity", "serve"]:
         parser.add_argument(
             "-c",

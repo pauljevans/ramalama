@@ -90,6 +90,12 @@ class TestEngine(unittest.TestCase):
             dry_run(["podman", "run", "--rm", "test-image"])
             mock_stdout.write.assert_called()
 
+    def test_add_amd_override_env(self):
+        args = Namespace(**vars(self.base_args), amd_override="11.0.0")
+        engine = Engine(args)
+        self.assertIn("--env", engine.exec_args)
+        self.assertIn("HSA_OVERRIDE_GFX_VERSION=11.0.0", engine.exec_args)
+
 
 if __name__ == '__main__':
     unittest.main()
